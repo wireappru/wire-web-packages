@@ -39,8 +39,6 @@ import {
   Line,
   Link,
   Loading,
-  Loading,
-  Logo,
   Logo,
   Menu,
   MenuItem,
