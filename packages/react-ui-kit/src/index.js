@@ -38,4 +38,5 @@ export * from './Loading';
 export * from './Checkbox';
 export * from './Form';
 export * from './HeaderMenu';
+export * from './Link';
 export {COLOR} from './variables';
