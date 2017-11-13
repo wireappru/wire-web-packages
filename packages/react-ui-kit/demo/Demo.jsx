@@ -39,6 +39,8 @@ import {
   Line,
   Loading,
   Logo,
+  Menu,
+  MenuItem,
   Muted,
   Paragraph,
   Select,
@@ -52,6 +54,10 @@ import React from 'react';
 export default function Demo() {
   return (
     <Container>
+      <Menu>
+        <MenuItem>number 1</MenuItem>
+        <MenuItem>number 2</MenuItem>
+      </Menu>
       <Columns>
         <Column>
           <Logo />

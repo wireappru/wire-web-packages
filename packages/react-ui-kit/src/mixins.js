@@ -31,6 +31,11 @@ export const media = {
       ${css(...content)};
     }
   `,
+  extraSmall: (...content) => css`
+    @media (max-width: 767px) {
+      ${css(...content)};
+    }
+  `,
   mobile: (...content) => css`
     @media (max-width: ${SIZE.MOBILE}px) {
       ${css(...content)};
@@ -47,7 +52,7 @@ export const media = {
     }
   `,
   tabletDown: (...content) => css`
-    @media (min-width: ${SIZE.TABLET_MAX}px) {
+    @media (max-width: ${SIZE.TABLET_MAX}px) {
       ${css(...content)};
     }
   `,
