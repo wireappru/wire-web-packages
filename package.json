@@ -6,10 +6,7 @@
     "prettier": "1.8.1"
   },
   "lint-staged": {
-    "*.{js,ts}": [
-      "yarn lint:script",
-      "git add"
-    ]
+    "*.{js,ts}": ["yarn lint:script", "git add"]
   },
   "private": true,
   "scripts": {
@@ -18,9 +15,7 @@
     "dist": "lerna run dist",
     "lint": "yarn lint:script",
     "lint:script": "prettier --ignore-path .gitignore --write **/*.{js,ts}",
-    "test": "lerna run test"
+    "test": "lerna run dist && lerna run test"
   },
-  "workspaces": [
-    "packages/*"
-  ]
+  "workspaces": ["packages/*"]
 }
