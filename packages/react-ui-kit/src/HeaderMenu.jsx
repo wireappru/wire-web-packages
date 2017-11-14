@@ -40,8 +40,8 @@ const MenuButton = styled.div`
   }
 `;
 
-const MenuItem = ({Component = 'a', ...props}) => {
-  const StyledItem = Text.withComponent(Component).extend`
+const MenuItem = ({component, ...props}) => {
+  const StyledItem = Text.withComponent(component).extend`
   ${media.extraSmall`
   display: block;
   font-size: 24px;
@@ -54,6 +54,14 @@ const MenuItem = ({Component = 'a', ...props}) => {
   width: 100%;
 `}`;
   return <StyledItem {...props} />;
+};
+
+MenuItem.propTypes = {
+  component: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+};
+
+MenuItem.defaultProps = {
+  component: 'a',
 };
 
 const MenuContainer = styled.div`
@@ -104,7 +112,6 @@ class Menu extends React.PureComponent {
   render() {
     const isOpen = this.state;
     const menuItems = React.Children.map(this.props.children, child => {
-      console.log(child);
       const originalOnClick = child.props.onClick || noop;
       return React.cloneElement(child, {onClick: () => this.closeMenu(originalOnClick)});
     });
