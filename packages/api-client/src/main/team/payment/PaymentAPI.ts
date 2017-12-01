@@ -20,13 +20,13 @@
 import {AxiosPromise, AxiosRequestConfig, AxiosResponse} from 'axios';
 
 import {
-  PaymentData,
   PaymentBillingData,
+  PaymentData,
   PaymentDataUpdate,
+  PaymentPlan,
   PaymentStripeCharge,
   PaymentStripeInvoice,
   PaymentStripePlan,
-  PaymentPlan,
 } from '.';
 import {HttpClient} from '../../http';
 
@@ -49,6 +49,16 @@ export default class TeamAPI {
     const config: AxiosRequestConfig = {
       data: paymentData,
       method: 'put',
+      url: `${TeamAPI.URL.TEAMS}/${teamId}/${TeamAPI.URL.BILLING}`,
+    };
+
+    return this.client.sendJSON(config).then((response: AxiosResponse) => response.data);
+  }
+
+  public deletePaymentData(teamId: string, paymentData: PaymentData): AxiosPromise {
+    const config: AxiosRequestConfig = {
+      data: paymentData,
+      method: 'delete',
       url: `${TeamAPI.URL.TEAMS}/${teamId}/${TeamAPI.URL.BILLING}`,
     };
 

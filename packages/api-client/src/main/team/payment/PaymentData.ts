@@ -29,6 +29,7 @@ interface PaymentData {
     holder: string;
     zip: string;
   };
+  coupon: string;
   invoice: InvoiceData;
   plan: PaymentPlan;
   planId: 'wire_annual_plan' | 'wire_monthly_plan';
