@@ -19,10 +19,10 @@
 
 /* eslint no-magic-numbers: "off" */
 
-const {store: CryptoboxStore, Cryptobox} = require('@wireapp/cryptobox');
-const LRUCache = require('@wireapp/lru-cache').default;
 const Proteus = require('@wireapp/proteus');
 const UUID = require('pure-uuid');
+const {store: CryptoboxStore, Cryptobox} = require('@wireapp/cryptobox');
+const {LRUCache} = require('@wireapp/lru-cache');
 const {IndexedDBEngine} = require('@wireapp/store-engine');
 
 describe('cryptobox.store.IndexedDB', () => {

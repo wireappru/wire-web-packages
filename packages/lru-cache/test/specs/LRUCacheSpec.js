@@ -20,7 +20,7 @@
 /* eslint no-magic-numbers: "off" */
 
 describe('LRUCache', () => {
-  const LRUCache = require('../../dist/commonjs/LRUCache').default;
+  const {LRUCache} = require('../../');
 
   describe('"delete"', () => {
     it('keeps the list order intact when deleting', () => {

@@ -17,29 +17,42 @@
  *
  */
 
-class LRUCache {
-  private map: Object;
-  private head: any;
-  private end: any;
+interface CacheObject<T> {
+  key: string | null;
+  next: CacheObject<T> | null;
+  previous: CacheObject<T> | null;
+  value: T | null;
+}
+
+interface CacheMap<T> {
+  [key: string]: CacheObject<T>;
+}
+
+class LRUCache<T> {
+  private map: CacheMap<T>;
+  private head: CacheObject<T> | null;
+  private end: CacheObject<T> | null;
 
   constructor(private capacity: number = 100) {
     this.map = {};
+    this.head = null;
+    this.end = null;
   }
 
   public delete(key: string): boolean {
-    let node: any = (<any>this.map)[key];
+    let node: CacheObject<T> = this.map[key];
 
     if (node) {
       this.remove(node);
-      delete (<any>this.map)[node.key];
+      delete this.map[node.key!];
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }
 
-  public get(key: string): any {
-    let node: any = (<any>this.map)[key];
+  public get(key: string): T | null | void {
+    let node: CacheObject<T> = this.map[key];
     if (node) {
       this.remove(node);
       this.setHead(node);
@@ -49,29 +62,32 @@ class LRUCache {
 
   public keys(): Array<string> {
     let keys: Array<string> = [];
-    let entry: any = this.head;
+    let entry = this.head;
 
     while (entry) {
-      keys.push(entry.key);
+      keys.push(entry.key!);
       entry = entry.next;
     }
 
     return keys;
   }
 
-  public latest(): any {
+  public latest(): T | null {
+    if (!this.head) {
+      throw new Error('No');
+    }
     return this.head.value;
   }
 
-  public oldest(): any {
-    return this.end.value;
+  public oldest(): T | null {
+    return this.end!.value;
   }
 
-  private remove(node: any): any {
+  private remove(node: CacheObject<T>): CacheObject<T> {
     if (node.previous) {
       node.previous.next = node.next;
     } else {
-      this.head = node.next;
+      this.setHead(node.next);
     }
 
     if (node.next != null) {
@@ -83,11 +99,13 @@ class LRUCache {
     return node;
   }
 
-  public set(key: string, value: any): Object {
-    let old: any = (<any>this.map)[key];
-    let removedNode: any = {
-      key: undefined,
-      value: undefined,
+  public set(key: string, value: T): T | null {
+    let old: CacheObject<T> = this.map[key];
+    let removedNode: CacheObject<T> = {
+      key: null,
+      next: null,
+      previous: null,
+      value: null,
     };
 
     if (old) {
@@ -96,25 +114,32 @@ class LRUCache {
       this.setHead(old);
       return removedNode.value;
     } else {
-      let created: any = {
+      let created: CacheObject<T> = {
         key: key,
+        next: null,
+        previous: null,
         value: value,
       };
 
       if (Object.keys(this.map).length >= this.capacity) {
-        delete (<any>this.map)[this.end.key];
-        removedNode = this.remove(this.end);
+        delete this.map[this.end!.key!];
+        removedNode = this.remove(this.end!);
         this.setHead(created);
       } else {
         this.setHead(created);
       }
 
-      (<any>this.map)[key] = created;
+      this.map[key] = created;
       return removedNode.value;
     }
   }
 
-  private setHead(node: any) {
+  private setHead(node: CacheObject<T> | null) {
+    if (node === null) {
+      this.end = null;
+      return;
+    }
+
     node.next = this.head;
     node.previous = null;
 
@@ -124,18 +149,21 @@ class LRUCache {
 
     this.head = node;
 
-    if (!this.end) {
+    if (this.end === null) {
       this.end = this.head;
     }
   }
 
   public size(): number {
+    if (this.map === null) {
+      return 0;
+    }
     return Object.keys(this.map).length;
   }
 
   public toString(): string {
-    let string: string = '(newest) ';
-    let entry: any = this.head;
+    let string = '(newest) ';
+    let entry = this.head;
 
     while (entry) {
       string += `${String(entry.key)}:${entry.value}`;
@@ -149,4 +177,4 @@ class LRUCache {
   }
 }
 
-export default LRUCache;
+export {LRUCache};

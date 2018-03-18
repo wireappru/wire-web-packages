@@ -19,11 +19,11 @@
 
 /* eslint no-magic-numbers: "off" */
 
-const {Cryptobox} = require('@wireapp/cryptobox');
 const fs = require('fs-extra');
-const LRUCache = require('@wireapp/lru-cache').default;
 const path = require('path');
 const Proteus = require('@wireapp/proteus');
+const {Cryptobox} = require('@wireapp/cryptobox');
+const {LRUCache} = require('@wireapp/lru-cache');
 const {FileEngine} = require('@wireapp/store-engine');
 
 describe('cryptobox.store.CryptoboxCRUDStore', () => {

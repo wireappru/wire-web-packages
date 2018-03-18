@@ -6,7 +6,7 @@ import CryptoboxSession from './CryptoboxSession';
 import DecryptionError from './DecryptionError';
 import InvalidPreKeyFormatError from './InvalidPreKeyFormatError';
 import {CryptoboxCRUDStore} from './store/root';
-import LRUCache from '@wireapp/lru-cache';
+import {LRUCache} from '@wireapp/lru-cache';
 import {PriorityQueue} from '@wireapp/priority-queue';
 import {CRUDEngine} from '@wireapp/store-engine/dist/commonjs/engine/';
 import EventEmitter = require('events');
@@ -26,7 +26,7 @@ class Cryptobox extends EventEmitter {
     NEW_SESSION: 'new-session',
   };
 
-  private cachedSessions: LRUCache;
+  private cachedSessions: LRUCache<CryptoboxSession>;
 
   private logger: any = logdown('@wireapp/cryptobox/Cryptobox', {
     logger: console,
@@ -80,7 +80,13 @@ class Cryptobox extends EventEmitter {
 
   private load_session_from_cache(session_id: string): CryptoboxSession {
     this.logger.log(`Trying to load Session with ID "${session_id}" from cache...`);
-    return this.cachedSessions.get(session_id);
+
+    const session = this.cachedSessions.get(session_id);
+    if (session) {
+      return session;
+    }
+
+    throw new Error('Could not load session with ID "${session_id}.');
   }
 
   private remove_session_from_cache(session_id: string): void {
