@@ -23,6 +23,7 @@
     "gulp-eslint": "4.0.2",
     "gulp-util": "3.0.8",
     "gutil": "1.6.4",
+    "istanbul": "0.4.5",
     "jasmine": "3.1.0",
     "karma": "2.0.0",
     "karma-chrome-launcher": "2.2.0",
@@ -47,6 +48,7 @@
   "scripts": {
     "build": "gulp install && yarn build:node && yarn build:browser",
     "copy:browser": "cpx ../cbor/dist/cbor.bundle.js dist/lib/dynamic && cpx ../lru-cache/dist/lru-cache.bundle.js dist/lib/dynamic && cpx ../priority-queue/dist/priority-queue.bundle.js dist/lib/dynamic && cpx ../proteus/dist/proteus.bundle.js dist/lib/dynamic && cpx ../store-engine/dist/store-engine.bundle.js dist/lib/dynamic",
+    "coverage": "istanbul cover --report html ../../node_modules/jasmine/bin/jasmine.js --config=test/jasmine.node.json",
     "build:browser": "yarn copy:browser && webpack --progress",
     "build:node": "tsc",
     "clear": "rimraf dist/commonjs dist/lib",
