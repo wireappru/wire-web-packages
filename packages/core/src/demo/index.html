@@ -10,7 +10,7 @@
   <body>
     <script>
       const account = new window.core.Account();
-      console.log(account);
+      account.init().then(() => console.log(account));
     </script>
   </body>
 </html>

@@ -45,7 +45,7 @@ import Client = require('@wireapp/api-client');
 import EventEmitter = require('events');
 import {StatusCode} from '@wireapp/api-client/dist/commonjs/http/index';
 import {RecordNotFoundError} from '@wireapp/store-engine/dist/commonjs/engine/error/index';
-import proto from './Protobuf';
+import loadProtocolBuffers from '@wireapp/protocol-messaging';
 
 class Account extends EventEmitter {
   private logger: any = logdown('@wireapp/core/Account', {
@@ -73,7 +73,7 @@ class Account extends EventEmitter {
   private async init(): Promise<void> {
     this.logger.info('init');
 
-    const root: Root = Root.fromJSON(proto);
+    const root: Root = loadProtocolBuffers();
 
     this.protocolBuffers = {
       Asset: root.lookup('Asset'),
