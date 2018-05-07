@@ -142,7 +142,7 @@ export default class ConversationService {
     return this.apiClient.conversation.api.postOTRMessage(sendingClientId, conversationId, message);
   }
 
-  private async sendExternalGenericMessage(
+  public async sendExternalGenericMessage(
     sendingClientId: string,
     conversationId: string,
     asset: EncryptedAsset,
@@ -175,7 +175,7 @@ export default class ConversationService {
     return this.apiClient.conversation.api.postOTRMessage(sendingClientId, conversationId, message);
   }
 
-  private async sendGenericMessage(
+  public async sendGenericMessage(
     sendingClientId: string,
     conversationId: string,
     genericMessage: any

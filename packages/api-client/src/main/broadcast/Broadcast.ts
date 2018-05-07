@@ -17,24 +17,11 @@
  *
  */
 
-import {Asset, Original, RemoteData} from './Asset';
-import AssetService from './AssetService';
-import BroadcastService from './BroadcastService';
-import ConfirmationType from './ConfirmationType';
-import ConversationService from './ConversationService';
-import DecodedEvent from './DecodedEvent';
-import GenericMessageType from './GenericMessageType';
-import Image from './Image';
+import {OTRRecipients} from '../conversation';
 
-export {
-  Asset,
-  AssetService,
-  BroadcastService,
-  ConfirmationType,
-  ConversationService,
-  DecodedEvent,
-  Original,
-  GenericMessageType,
-  Image,
-  RemoteData,
-};
+interface Broadcast {
+  recipients: OTRRecipients;
+  sender: string;
+}
+
+export {Broadcast};

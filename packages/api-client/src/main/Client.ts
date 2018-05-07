@@ -22,6 +22,7 @@ import {Config} from './Config';
 import {AccessTokenData, AuthAPI, Context, LoginData, RegisterData, AUTH_TABLE_NAME} from './auth';
 import {AccessTokenStore} from './auth/';
 import {AssetAPI} from './asset/';
+import {BroadcastAPI} from './broadcast/';
 import {AxiosResponse} from 'axios';
 import {Backend} from './env';
 import {ClientAPI, ClientType} from './client/';
@@ -50,6 +51,7 @@ class Client {
   // APIs
   public asset: {api: AssetAPI};
   public auth: {api: AuthAPI};
+  public broadcast: {api: BroadcastAPI};
   public client: {api: ClientAPI};
   public connection: {api: ConnectionAPI};
   public conversation: {api: ConversationAPI};
@@ -94,6 +96,9 @@ class Client {
     };
     this.auth = {
       api: new AuthAPI(this.transport.http, this.config.store),
+    };
+    this.broadcast = {
+      api: new BroadcastAPI(this.transport.http),
     };
     this.client = {
       api: new ClientAPI(this.transport.http),

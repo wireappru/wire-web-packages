@@ -41,6 +41,7 @@ import {LoginSanitizer} from './auth/root';
 import {Root} from 'protobufjs';
 import {WebSocketClient} from '@wireapp/api-client/dist/commonjs/tcp/index';
 import {AssetService, ConversationService, DecodedEvent, GenericMessageType} from './conversation/root';
+import {AvailabilityService} from './user/root';
 import Client = require('@wireapp/api-client');
 import EventEmitter = require('events');
 import {StatusCode} from '@wireapp/api-client/dist/commonjs/http/index';
@@ -61,6 +62,7 @@ class Account extends EventEmitter {
   private apiClient: Client;
   private protocolBuffers: any = {};
   public service?: {
+    availability: AvailabilityService;
     client: ClientService;
     conversation: ConversationService;
     cryptography: CryptographyService;
@@ -95,8 +97,10 @@ class Account extends EventEmitter {
       assetService
     );
     const notificationService = new NotificationService(this.apiClient, this.apiClient.config.store);
+    const availabilityService = new AvailabilityService(this.apiClient, this.protocolBuffers, conversationService);
 
     this.service = {
+      availability: availabilityService,
       client: clientService,
       conversation: conversationService,
       cryptography: cryptographyService,
