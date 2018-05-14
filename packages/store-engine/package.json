@@ -7,6 +7,8 @@
     "fs-extra": "6.0.1"
   },
   "devDependencies": {
+    "cross-env": "5.1.5",
+    "istanbul": "1.1.0-alpha.1",
     "jasmine": "3.1.0",
     "karma": "2.0.2",
     "karma-chrome-launcher": "2.2.0",
@@ -42,8 +44,12 @@
     "build": "yarn build:node && yarn build:browser",
     "build:browser": "webpack --progress",
     "build:node": "tsc",
-    "clear": "rimraf dist",
-    "dist": "yarn clear && yarn build",
+    "clear": "yarn clear:coverage && yarn clear:dist",
+    "clear:coverage": "rimraf coverage",
+    "clear:dist": "rimraf dist",
+    "coverage": "yarn clear:coverage && yarn coverage:node",
+    "coverage:node": "cross-env JASMINE_CONFIG_PATH=jasmine.json istanbul cover ../../node_modules/jasmine/bin/jasmine.js",
+    "dist": "yarn clear:dist && yarn build",
     "test": "yarn test:node && yarn test:browser",
     "test:project": "yarn dist && yarn test",
     "test:browser": "webpack --progress && karma start",

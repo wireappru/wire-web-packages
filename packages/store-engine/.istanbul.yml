@@ -1,0 +1,7 @@
+instrumentation:
+    excludes: ['**/*test.*.js']
+reporting:
+    print: summary
+    reports:
+        - html
+    dir: ./coverage/node
