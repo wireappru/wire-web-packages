@@ -51,7 +51,7 @@
     "coverage": "yarn clear:coverage && yarn coverage:node && yarn coverage:merge",
     "coverage:merge": "yarn coverage:node:map && istanbul report --root ./coverage/report --dir ./coverage/report/html html",
     "coverage:node": "cross-env JASMINE_CONFIG_PATH=jasmine.json istanbul cover ../../node_modules/jasmine/bin/jasmine.js",
-    "coverage:node:map": "remap-istanbul -i ./coverage/node/coverage.raw.json -o ./coverage/report/coverage-node.json",
+    "coverage:node:map": "remap-istanbul -i ./coverage/node/coverage.raw.json -o ./coverage/report/coverage-node.json -t html",
     "dist": "yarn clear:dist && yarn build",
     "test": "yarn test:node && yarn test:browser",
     "test:project": "yarn dist && yarn test",
