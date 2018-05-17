@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/compare/@wireapp/api-client@0.9.4...@wireapp/api-client@0.10.0) (2018-05-17)
+
+
+### Features
+
+* **api-client:** Consent endpoint ([#599](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/issues/599)) ([4abe9c6](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/commit/4abe9c6))
+
+
+
+
+<a name="0.9.4"></a>
+## [0.9.4](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/compare/@wireapp/api-client@0.9.3...@wireapp/api-client@0.9.4) (2018-05-16)
+
+
+
+
+**Note:** Version bump only for package @wireapp/api-client
+
+<a name="0.9.3"></a>
+## [0.9.3](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/compare/@wireapp/api-client@0.9.2...@wireapp/api-client@0.9.3) (2018-05-15)
+
+
+
+
+**Note:** Version bump only for package @wireapp/api-client
+
 <a name="0.9.2"></a>
 ## [0.9.2](https://github.com/wireapp/wire-web-packages/tree/master/packages/api-client/compare/@wireapp/api-client@0.9.1...@wireapp/api-client@0.9.2) (2018-05-14)
 

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@types/filesystem": "0.0.28",
-    "@types/node": "10.0.8",
+    "@types/node": "10.1.0",
     "bro-fs": "0.4.0",
     "dexie": "2.0.3",
     "fs-extra": "6.0.1"
@@ -18,7 +18,8 @@
     "remap-istanbul": "0.11.1",
     "rimraf": "2.6.2",
     "typescript": "2.8.3",
-    "webpack": "3.11.0"
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.3"
   },
   "description": "Provides a generic storage layer for File, FileSystem, IndexedDB, Memory & LocalStorage.",
   "files": [
@@ -55,10 +56,10 @@
     "coverage:report": "istanbul report --root ./coverage --dir ./coverage/report/html html",
     "dist": "yarn clear:dist && yarn build",
     "test": "yarn test:node && yarn test:browser",
-    "test:project": "yarn dist && yarn test",
     "test:browser": "webpack --progress && karma start",
+    "test:project": "yarn dist && yarn test",
     "test:node": "jasmine --config=jasmine.json"
   },
   "types": "./dist/commonjs/index.d.ts",
-  "version": "0.11.9"
+  "version": "0.11.11"
 }

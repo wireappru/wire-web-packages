@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "@types/fs-extra": "5.0.2",
-    "@types/node": "10.0.8",
-    "@wireapp/lru-cache": "2.1.8",
-    "@wireapp/priority-queue": "0.1.24",
-    "@wireapp/proteus": "7.1.36",
-    "@wireapp/store-engine": "0.11.9",
+    "@types/node": "10.1.0",
+    "@wireapp/lru-cache": "2.1.9",
+    "@wireapp/priority-queue": "0.1.26",
+    "@wireapp/proteus": "7.1.38",
+    "@wireapp/store-engine": "0.11.11",
     "dexie": "2.0.3",
     "fs-extra": "6.0.1"
   },
@@ -34,7 +34,8 @@
     "rimraf": "2.6.2",
     "run-sequence": "2.2.1",
     "typescript": "2.8.3",
-    "webpack": "3.11.0"
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.3"
   },
   "files": [
     "dist",
@@ -52,10 +53,10 @@
     "clear": "rimraf dist/commonjs dist/lib",
     "dist": "yarn clear && yarn build",
     "test": "yarn test:node && yarn test:browser",
-    "test:project": "yarn dist && yarn test",
     "test:browser": "webpack && karma start",
+    "test:project": "yarn dist && yarn test",
     "test:node": "cross-env NODE_DEBUG=@wireapp/cryptobox* jasmine --config=test/jasmine.node.json"
   },
   "types": "dist/commonjs/index.d.ts",
-  "version": "8.3.50"
+  "version": "8.3.52"
 }
